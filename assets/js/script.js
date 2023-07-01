@@ -15,6 +15,8 @@ generateBtn.addEventListener("click", writePassword);
 
 // my code
 
+
+
 function generatePassword() {
   // choose length btw 8 and 128 characters
   let passwordLength = prompt("How many characters for your password?");
@@ -44,10 +46,10 @@ function generatePassword() {
   let numericChoices = "0123456789";
   let specialChoices = "!@#$%^&*()?";
 
-  let lowercaseArray = lowercaseLetters.split();
-  let uppercaseArray = uppercaseLetters.split();
-  let numericArray = numericChoices.split();
-  let specialArray = specialChoices.split();
+  let lowercaseArray = lowercaseLetters.split("");
+  let uppercaseArray = uppercaseLetters.split("");
+  let numericArray = numericChoices.split("");
+  let specialArray = specialChoices.split("");
 
   // master array logic
   let masterArray = []
@@ -70,21 +72,39 @@ function generatePassword() {
 
   // master array selection
 
-  // pick a random array
-  function randomIndex(array) {
-    let randomArrayIndex = Math.floor(Math.random() * array.length);
-    return randomArrayIndex; 
+  // random array from master - returns Array object
+  function randomFromMaster () {
+    let randomMasterIndex = Math.floor(Math.random() * masterArray.length);
+    let randomArrayFromMaster = masterArray[randomMasterIndex];
+    // ---
+    // ---
+    return randomArrayFromMaster
   }
 
-  // pick random array index from that array
-  function randomFromArray() {
+  
+  // from array picks random index
+  // function randomIndex(array) {
+  //   let randomArrayIndex = Math.floor(Math.random() * array.length);
+  //   return randomArrayIndex; 
+  // }
+
+  // pick random array index from that array - should return string at random index
+  function randomFromArray(array) {
+    let randomArrayIndex = Math.floor(Math.random() * array.length);
     let randomArrayChoice = array[randomArrayIndex];
     return randomArrayChoice;
   }
 
   // generate password
   while (generatedPassword.length < passwordLength) {
-    generatedPassword = generatedPassword + randomFromArray();
+    generatedPassword = generatedPassword + randomFromArray(randomFromMaster());
   }
+
+  return generatedPassword;
 }
 
+// START - TESTING
+
+
+
+// END
