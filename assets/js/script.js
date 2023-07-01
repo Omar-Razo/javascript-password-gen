@@ -15,12 +15,12 @@ generateBtn.addEventListener("click", writePassword);
 
 // my code
 
-
 function generatePassword() {
   // choose length btw 8 and 128 characters
   let passwordLength = prompt("How many characters for your password?");
   let generatedPassword = "";
   
+  // catches incorrect password length
   if ((passwordLength < 8) || (passwordLength > 128)) {
     alert("Invalid password length.\nPassword length must be between 8 and 128 characters.");
     return "Length Invalid. Please click again to generate a password.";
@@ -49,18 +49,42 @@ function generatePassword() {
   let numericArray = numericChoices.split();
   let specialArray = specialChoices.split();
 
-  let masterArray = [lowercaseArray, uppercaseArray, numericArray, specialArray];
+  // master array logic
+  let masterArray = []
 
-  // random choice base function
-  function randomFromArray(array) {
-    let randomArrayIndex = Math.floor(Math.random() * array.passwordLength);
+  if (includeLowercase) {
+    masterArray.push(lowercaseArray);
+  } 
+
+  if (includeUppercase) {
+    masterArray.push(uppercaseArray);
+  }
+
+  if (includeNumeric) {
+    masterArray.push(numericArray);
+  }
+
+  if (includeSpecial) {
+    masterArray.push(specialArray);
+  }
+
+  // master array selection
+
+  // pick a random array
+  function randomIndex(array) {
+    let randomArrayIndex = Math.floor(Math.random() * array.length);
+    return randomArrayIndex; 
+  }
+
+  // pick random array index from that array
+  function randomFromArray() {
     let randomArrayChoice = array[randomArrayIndex];
+    return randomArrayChoice;
   }
 
   // generate password
-  while (generatePassword.length < passwordLength) {
-    
+  while (generatedPassword.length < passwordLength) {
+    generatedPassword = generatedPassword + randomFromArray();
   }
-
 }
 
