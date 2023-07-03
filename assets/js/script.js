@@ -1,4 +1,4 @@
-// Assignment Code
+// Assignment Code START------------------------------------------------------
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
@@ -12,8 +12,10 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+// Assignment Code END ---------------------------------------------------------
 
-// my code
+
+// My Code START ----------------------------------------------------------------
 function generatePassword() {
   // choose password length (cast to number) and set generated password varible to empty string
   let passwordLengthInput = Number(prompt("How many characters for your password?"));
@@ -52,7 +54,7 @@ function generatePassword() {
   let lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
   let uppercaseLetters = lowercaseLetters.toUpperCase();
   let numericChoices = "0123456789";
-  let specialChoices = "!@#$%^&*()?";
+  let specialChoices = " !#$%&'()*+,-./:;<=>?@[]^_`{|}~";
 
   // arrays from character type strings
   let lowercaseArray = lowercaseLetters.split("");
@@ -60,7 +62,7 @@ function generatePassword() {
   let numericArray = numericChoices.split("");
   let specialArray = specialChoices.split("");
 
-  // master array logic - an array of selected character-type arrays
+  // master array logic - an array of selected character-type arrays - built based on user selection
   let masterArray = []
 
   if (includeLowercase) {
@@ -86,7 +88,7 @@ function generatePassword() {
     return randomArrayFromMaster
   }
 
-  // picks random array index from that array - should return string at index
+  // picks random array index from that array - should return data at index (string)
   function randomFromArray(array) {
     let randomArrayIndex = Math.floor(Math.random() * array.length);
     let randomArrayChoice = array[randomArrayIndex];
@@ -100,3 +102,4 @@ function generatePassword() {
 
   return generatedPassword;
 }
+// My Code END -----------------------------------------------------
